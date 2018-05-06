@@ -9,6 +9,7 @@ class Enrutador
 {
 public:
     //Constructor
+    Enrutador();
     Enrutador(string nombre);
     //Atributos
     string nombreNodo;
