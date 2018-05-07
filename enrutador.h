@@ -2,6 +2,7 @@
 #define ENRUTADOR_H
 #include <iostream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -13,13 +14,11 @@ public:
     Enrutador(string nombre);
     //Atributos
     string nombreNodo;
-    vector<Enrutador*> headerTabla;
-    vector<Enrutador*> listaDeNodos;
-    vector<int> listaCostos;
+    map<Enrutador*,int> Vecinos;
     vector<int> tablaEnrutamiento;
     // Métodos
-    void agregarNodo(Enrutador* nodo, int costo);
     void imprimirNodos();
+
     void crearTabla();
     void MirarVecinos(Enrutador* nodo, int costo);
     bool nodoYaEstaAgregado(Enrutador* nodo);
