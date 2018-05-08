@@ -6,8 +6,7 @@
 
 using namespace std;
 
-class Enrutador
-{
+class Enrutador{
 public:
     //Constructor
     Enrutador();
@@ -15,9 +14,16 @@ public:
     //Atributos
     string nombreNodo;
     map<Enrutador*,int> Vecinos;
-    vector<int> tablaEnrutamiento;
+    struct Enrutamiento{
+        char destino;
+        int distancia;
+        char prevdestino;
+    }TablaEnrutamiento[100];
+
     // Métodos
     void imprimirNodos();
+    void inicializarTabla(int);
+    void imprimirTabla(int);
 
     void crearTabla();
     void MirarVecinos(Enrutador* nodo, int costo);

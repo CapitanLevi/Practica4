@@ -5,9 +5,7 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp \
-    enrutador.cpp \
-    parnodecost.cpp
+    enrutador.cpp
 
 HEADERS += \
-    enrutador.h \
-    parnodecost.h
+    enrutador.h

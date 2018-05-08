@@ -1,29 +1,38 @@
+#define INF 1<<30
 #include "enrutador.h"
 
-Enrutador::Enrutador()
-{
+Enrutador::Enrutador(){}
 
-}
-
-Enrutador::Enrutador(string nombre)
-{
+Enrutador::Enrutador(string nombre){
     cout << "Enrutador " << nombre << " creado." << endl;
     this->nombreNodo = nombre;
 }
 
-void Enrutador::setCosto(Enrutador* nodo,int _costo)
-{
-
-//    this->Vecinos.insert(pair<Enrutador*,int>(nodo->nombreNodo,_costo));
-}
-
-void Enrutador::imprimirNodos()
-{
+void Enrutador::imprimirNodos(){
     map<Enrutador*,int>::iterator it;
     cout<<"Vecinos del "<<this->nombreNodo<<": "<<endl;
     for(it=this->Vecinos.begin(); it != this->Vecinos.end() ; ++it){
         cout<<"- "<<it->first->nombreNodo << " con costo "<<it->second<<endl;
     }
+}
+
+void Enrutador::inicializarTabla(int n){
+    char letraNombre='A';
+    for(int i;i<n;i++,letraNombre++){
+        if(letraNombre==this->nombreNodo.back())continue;
+        this->TablaEnrutamiento[i]={letraNombre,INF,'0'};
+    }
+}
+
+void Enrutador::imprimirTabla(int n)
+{
+    cout<<"| Vertex | Shortest distance | Previous vertex |"<<endl;
+    for(int i=0;i<n;i++){
+        cout<<"|  "<<TablaEnrutamiento[i].destino<<"  |"<<
+        '\t'<<TablaEnrutamiento[i].distancia<<"  |"<<
+        "    "<<TablaEnrutamiento[i].prevdestino<<"   |"<<endl;
+    }
+    cout<<"\n";
 }
 
 void Enrutador::crearTabla()

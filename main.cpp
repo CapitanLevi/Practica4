@@ -1,9 +1,9 @@
+#define INF 1<<30 //Numero muy grande comparado con los posibles costos de los enlances.
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <map>
 #include "enrutador.h"
-#include "parnodecost.h"
 using namespace std;
 
 int main(){
@@ -26,12 +26,14 @@ int main(){
     //Nodos es vector<Enrutador*>, nod->Vecinos es map<Enrutador*,int>
     //Asignación de vecinos y costos de cada enrutador por parte del usuario (Cración del graph)
     int Costo;
+    cout<<"Ingrese los costos de los vecinos de todos los nodos."<<endl;
+    cout<<"Ingrese un negativo si no tiene enlace: "<<endl;
     for(int i=0; i<numNodos; i++){
-        cout<<"Ingrese los costos de los vecinos del "<<Nodos[i]->nombreNodo<<'.'<<endl;
-        cout<<"Ingrese un negativo si no tiene enlace: "<<endl;
+        cout<<"    "<<Nodos[i]->nombreNodo<<':'<<endl;
         for(int j=i; j<numNodos; j++){
             if(Nodos[i]==Nodos[j]){(Nodos[i]->Vecinos).insert(par(Nodos[j],0));continue;}
-            cout<<"Ingrese costo con el "<<Nodos[j]->nombreNodo<<": ";cin>>Costo;
+            cout<<"\t"<<"Ingrese costo con el "<<Nodos[j]->nombreNodo<<": ";cin>>Costo;
+            if(Costo<=0)continue;
             (Nodos[i]->Vecinos).insert(par(Nodos[j],Costo));
             (Nodos[j]->Vecinos).insert(par(Nodos[i],Costo));
         }
@@ -42,7 +44,13 @@ int main(){
         Nodos[i]->imprimirNodos();
     }
     cout<<'\n';
-    //Hallando la tabla de enrutamiento para cada uno de los nodos hacia todos los nodos.
+    //Inicializando e Imprimiendo las tablas de enrutamiento para todos los nodos.
+    for(int i=0; i<numNodos; i++){
+        cout<<"Para el nodo "<<Nodos[i]->nombreNodo<<":"<<endl;
+        Nodos[i]->inicializarTabla(numNodos);
+        Nodos[i]->imprimirTabla(numNodos);
+    }
+
     //VOY AQUI
     return 0;
 }
