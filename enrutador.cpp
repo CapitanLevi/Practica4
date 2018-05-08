@@ -1,5 +1,5 @@
 #include "enrutador.h"
-
+#define INF 1<<30;
 Enrutador::Enrutador()
 {
 
@@ -11,12 +11,6 @@ Enrutador::Enrutador(string nombre)
     this->nombreNodo = nombre;
 }
 
-void Enrutador::setCosto(Enrutador* nodo,int _costo)
-{
-
-//    this->Vecinos.insert(pair<Enrutador*,int>(nodo->nombreNodo,_costo));
-}
-
 void Enrutador::imprimirNodos()
 {
     map<Enrutador*,int>::iterator it;
@@ -26,6 +20,17 @@ void Enrutador::imprimirNodos()
     }
 }
 
+void Enrutador::inicializarTabla(int n){
+    int i=0;
+    for(char letraNodo='A';letraNodo<n+65;letraNodo++){
+        if(letraNodo==this->nombreNodo.back()){continue;}
+        this->TablaEnrutamiento[i].destino=letraNodo;
+        this->TablaEnrutamiento[i].distancia=INF;
+        this->TablaEnrutamiento[i].prevdestino='0';
+        i++;
+    }
+}
+/*
 void Enrutador::crearTabla()
 {
   //  this->MirarVecinos(this, 0);
@@ -33,13 +38,13 @@ void Enrutador::crearTabla()
 
 void Enrutador::MirarVecinos(Enrutador* nodo, int costo)
 {
-    /*for(int i=0; i < nodo->listaDeNodos.size() ; i++){
+    for(int i=0; i < nodo->listaDeNodos.size() ; i++){
         if(!nodoYaEstaAgregado(nodo->listaDeNodos[i]) && !(nodo->listaDeNodos[i] == this)){
             this->headerTabla.push_back(nodo->listaDeNodos[i]);
             this->tablaEnrutamiento.push_back(costo + nodo->listaCostos[i]);
             MirarVecinos(listaDeNodos[i], nodo->listaCostos[i]);
         }
-    }*/
+    }
 }
 
 bool Enrutador::nodoYaEstaAgregado(Enrutador *nodo)
@@ -61,3 +66,4 @@ void Enrutador::imprimirNodosAccesibles()
 //    }
 }
 
+*/
