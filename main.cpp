@@ -8,7 +8,7 @@ using namespace std;
 int main(){
     //Variables iniciales
     vector<Enrutador*> Nodos;
-    typedef pair<Enrutador*,int> par;
+    typedef pair<char,int> par;
     int numNodos;
     char letraNodo='A';
     cout<<"Ingrese el numero de nodos: ";
@@ -29,12 +29,11 @@ int main(){
     for(int i=0; i<numNodos; i++){
         cout<<"    "<<Nodos[i]->nombreNodo<<':'<<endl;
         for(int j=i; j<numNodos; j++){
-
-            if(Nodos[i]==Nodos[j]){(Nodos[i]->Vecinos).insert(par(Nodos[j],0));continue;} //El costo a sí mismo
+            if(Nodos[i]==Nodos[j]){(Nodos[i]->Vecinos).insert(par(Nodos[j]->nombreNodo.back(),0));continue;} //El costo a sí mismo
             cout<<"\t"<<"Ingrese costo con el "<<Nodos[j]->nombreNodo<<": ";cin>>Costo;
             if(Costo<=0)continue;  //En consideración. Depende de si es favorable o no tenerlos como vecinos con costo negativo en los mapas
-            (Nodos[i]->Vecinos).insert(par(Nodos[j],Costo));
-            (Nodos[j]->Vecinos).insert(par(Nodos[i],Costo));
+            (Nodos[i]->Vecinos).insert(par(Nodos[j]->nombreNodo.back(),Costo));
+            (Nodos[j]->Vecinos).insert(par(Nodos[i]->nombreNodo.back(),Costo));
         }
     }
     cout<<'\n';
@@ -63,13 +62,13 @@ int main(){
     do {
         Unvisited.push_back(letraNodo++);
     }while (numNodos!=letraNodo-65);
-    Enrutador* NodoActual;
-    //Hallando la tabla de enrutamiento final para 1 nodo (Dijkstra’s Shortest Path Algorithm)
-    while (!Unvisited.empty()){
-        NodoActual=Nodos[0]->neighborWithShortestDistance(numNodos);
-        Visited.push_back(letraNodo++);
-        Unvisited.erase(Unvisited.begin());
-    } //VOY AQUI
+//    Enrutador* NodoActual;
+//    //Hallando la tabla de enrutamiento final para 1 nodo (Dijkstra’s Shortest Path Algorithm)
+//    while (!Unvisited.empty()){
+//        NodoActual=Nodos[0]->neighbourWithShortestDistance(numNodos,Unvisited);
+//        Visited.push_back(letraNodo++);
+//        Unvisited.erase(Unvisited.begin());
+//    } //VOY AQUI
 
 
     return 0;

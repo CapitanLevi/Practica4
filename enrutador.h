@@ -13,7 +13,7 @@ public:
     Enrutador(string nombre);
     //Atributos
     string nombreNodo;
-    map<Enrutador*,int> Vecinos;
+    map<char,int> Vecinos;
     vector<char> destinos;
     vector<int> distancias;
     vector<char> prevdestinos;
@@ -27,7 +27,7 @@ public:
     // Métodos
     void imprimirNodos();
     void inicializarTabla(int);
-    Enrutador* neighborWithShortestDistance(int);    //Puede cambiar el tipo de retorno
+    char neighbourWithShortestDistance(int, vector<char> &unvisited);    //Puede cambiar el tipo de retorno
 
     void crearTabla();
     void MirarVecinos(Enrutador* nodo, int costo);

@@ -1,5 +1,6 @@
 #include "enrutador.h"
 #include <algorithm>    // std::min_element, std::max_element
+#include <map>
 Enrutador::Enrutador(){}
 
 Enrutador::Enrutador(string nombre){
@@ -8,10 +9,10 @@ Enrutador::Enrutador(string nombre){
 }
 
 void Enrutador::imprimirNodos(){
-    map<Enrutador*,int>::iterator it;
+    map<char,int>::iterator it;
     cout<<"Vecinos del "<<this->nombreNodo<<": "<<endl;
     for(it=this->Vecinos.begin(); it != this->Vecinos.end() ; ++it){
-        cout<<"    - "<<it->first->nombreNodo << " con costo "<<it->second<<endl;
+        cout<<"    - "<<it->first << " con costo "<<it->second<<endl;
     }
 }
 
@@ -23,31 +24,29 @@ void Enrutador::inicializarTabla(int n){
         if(letraNodo==this->nombreNodo.back()) {this->distancias.push_back(0);}
         else {this->distancias.push_back(INT8_MAX);}
     }
-//    int i=0;
-//    for(char letraNodo='A';letraNodo<n+65;i++,letraNodo++){
-//        this->TablaEnrutamiento[i].destino=letraNodo;
-//        this->TablaEnrutamiento[i].prevdestino='0';
-//        if(letraNodo==this->nombreNodo.back()){
-//            this->TablaEnrutamiento[i].distancia=0;
-//        }else{
-//            this->TablaEnrutamiento[i].distancia=INF;
-//        }
-    //    }
 }
 
-Enrutador* Enrutador::neighborWithShortestDistance(int n){
+char Enrutador::neighbourWithShortestDistance(int n,vector<char> &unvisited){
     //Encontrando la posición del mínimo elemento (distancia más corta)
     int mini = *min_element(distancias.begin(), distancias.end());
     auto temp = find(distancias.begin(), distancias.end(), mini);
     auto index = distance(distancias.begin(), temp);
     //Encontrando la letra (nombre del nodo) correspondiente al de esa posición.
-    Enrutador* VecinoConMenorDistancia;
-    for(int i=0; i<n; i++){
-        if(destinos[index]==Nodos[i]->nombreNodo.back()){
-            VecinoConMenorDistancia=Nodos[i];
+    char VecinoConMenorDistancia;
+    VecinoConMenorDistancia=destinos[index];
+    map<char,int>::iterator it; int i=0;
+    for (it=Vecinos.begin(); it!= Vecinos.end(); ++it,i++){
+        if((it->first)==unvisited[i]){
+
         }
     }
-    return NodoActual;
+
+//    for(int i=0; i<n; i++){
+//        if(destinos[index]==Vecinos.first->nombreNodo.back()){
+//            VecinoConMenorDistancia=Nodos[i];
+//        }
+//    }
+//    return VecinoConMenorDistancia;
 }
 
 
