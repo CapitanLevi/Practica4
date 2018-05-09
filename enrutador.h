@@ -7,8 +7,7 @@
 
 using namespace std;
 
-class Enrutador
-{
+class Enrutador{
 public:
     //Constructor
     Enrutador();
@@ -25,6 +24,7 @@ public:
     // Métodos
     void imprimirNodos();
     void inicializarTabla(int);
+
 
     void crearTabla();
     void MirarVecinos(Enrutador* nodo, int costo);

@@ -1,18 +1,13 @@
+#define INF 1<<30
 #include "enrutador.h"
-#define INF 1<<30;
-Enrutador::Enrutador()
-{
+Enrutador::Enrutador(){}
 
-}
-
-Enrutador::Enrutador(string nombre)
-{
+Enrutador::Enrutador(string nombre){
     cout << "Enrutador " << nombre << " creado." << endl;
     this->nombreNodo = nombre;
 }
 
-void Enrutador::imprimirNodos()
-{
+void Enrutador::imprimirNodos(){
     map<Enrutador*,int>::iterator it;
     cout<<"Vecinos del "<<this->nombreNodo<<": "<<endl;
     for(it=this->Vecinos.begin(); it != this->Vecinos.end() ; ++it){
