@@ -1,5 +1,6 @@
 #ifndef ENRUTADOR_H
 #define ENRUTADOR_H
+//#define INF 1<<30
 #include <iostream>
 #include <vector>
 #include <map>
@@ -18,12 +19,12 @@ public:
         char destino;
         int distancia;
         char prevdestino;
-    }TablaEnrutamiento[100];
+    }TablaEnrutamiento[10];
 
     // Métodos
     void imprimirNodos();
     void inicializarTabla(int);
-    void imprimirTabla(int);
+
 
     void crearTabla();
     void MirarVecinos(Enrutador* nodo, int costo);

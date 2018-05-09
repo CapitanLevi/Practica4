@@ -1,4 +1,4 @@
-#define INF 1<<30 //Numero muy grande comparado con los posibles costos de los enlances.
+//#define INF 1<<30
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -10,7 +10,6 @@ int main(){
     //Variables iniciales
     vector<Enrutador*> Nodos;
     typedef pair<Enrutador*,int> par;
-    //map<string, ParNodeCost*> nodosCercanos;
     int numNodos;
     char letraNodo='A';
     cout<<"Ingrese el numero de nodos: ";
@@ -31,9 +30,10 @@ int main(){
     for(int i=0; i<numNodos; i++){
         cout<<"    "<<Nodos[i]->nombreNodo<<':'<<endl;
         for(int j=i; j<numNodos; j++){
-            if(Nodos[i]==Nodos[j]){(Nodos[i]->Vecinos).insert(par(Nodos[j],0));continue;}
+
+            if(Nodos[i]==Nodos[j]){(Nodos[i]->Vecinos).insert(par(Nodos[j],0));continue;} //El costo a sí mismo
             cout<<"\t"<<"Ingrese costo con el "<<Nodos[j]->nombreNodo<<": ";cin>>Costo;
-            if(Costo<=0)continue;
+            if(Costo<=0)continue;  //En consideración. Depende de si es favorable o no tenerlos como vecinos con costo negativo en los mapas
             (Nodos[i]->Vecinos).insert(par(Nodos[j],Costo));
             (Nodos[j]->Vecinos).insert(par(Nodos[i],Costo));
         }
@@ -44,13 +44,16 @@ int main(){
         Nodos[i]->imprimirNodos();
     }
     cout<<'\n';
-    //Inicializando e Imprimiendo las tablas de enrutamiento para todos los nodos.
+    //Inicializando la tabla de enrutamiento para cada uno de los nodos hacia todos los nodos.
     for(int i=0; i<numNodos; i++){
-        cout<<"Para el nodo "<<Nodos[i]->nombreNodo<<":"<<endl;
         Nodos[i]->inicializarTabla(numNodos);
-        Nodos[i]->imprimirTabla(numNodos);
+        for(int j=0; j<numNodos-1; j++){
+        cout<<Nodos[i]->TablaEnrutamiento[j].destino<<" "<<
+              Nodos[i]->TablaEnrutamiento[j].distancia<<" "<<
+              Nodos[i]->TablaEnrutamiento[j].prevdestino<<endl;
+        }
+        cout<<'\n';
     }
-
     //VOY AQUI
     return 0;
 }
