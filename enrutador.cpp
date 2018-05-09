@@ -1,4 +1,4 @@
-//#define INF 1<<30
+#define INF 1<<30
 #include "enrutador.h"
 Enrutador::Enrutador(){}
 
@@ -16,18 +16,36 @@ void Enrutador::imprimirNodos(){
 }
 
 void Enrutador::inicializarTabla(int n){
-    int i=0;
-    double INF = std::numeric_limits<double>::infinity();
-    for(char letraNodo='A';letraNodo<n+65;i++,letraNodo++){
-        this->TablaEnrutamiento[i].destino=letraNodo;
-        this->TablaEnrutamiento[i].prevdestino='0';
+    for(int i=0; i<n; i++){
+        this->destinos[i]=i+65;
+        this->prevdestinos[i]='0';
         if(letraNodo==this->nombreNodo.back()){
-            this->TablaEnrutamiento[i].distancia=0;
+            this->distancias[i]=0;
         }else{
-            this->(double)TablaEnrutamiento[i].distancia=INF;
-        }
+            this->distancias[i]=INF;
+            }
+    }
+//    int i=0;
+//    for(char letraNodo='A';letraNodo<n+65;i++,letraNodo++){
+//        this->TablaEnrutamiento[i].destino=letraNodo;
+//        this->TablaEnrutamiento[i].prevdestino='0';
+//        if(letraNodo==this->nombreNodo.back()){
+//            this->TablaEnrutamiento[i].distancia=0;
+//        }else{
+//            this->TablaEnrutamiento[i].distancia=INF;
+//        }
+//    }
+}
+
+void Enrutador::shortestDistance(
+        )
+{
+    for(int i=0; i<sizeof(this->TablaEnrutamiento);i++){
+        if(TablaEnrutamiento[i].distancia<distanciaActual);
     }
 }
+
+
 /*
 void Enrutador::crearTabla()
 {
