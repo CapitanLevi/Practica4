@@ -1,4 +1,4 @@
-#define INF 1<<30
+//#define INF 1<<30
 #include "enrutador.h"
 Enrutador::Enrutador(){}
 
@@ -11,18 +11,21 @@ void Enrutador::imprimirNodos(){
     map<Enrutador*,int>::iterator it;
     cout<<"Vecinos del "<<this->nombreNodo<<": "<<endl;
     for(it=this->Vecinos.begin(); it != this->Vecinos.end() ; ++it){
-        cout<<"- "<<it->first->nombreNodo << " con costo "<<it->second<<endl;
+        cout<<"    - "<<it->first->nombreNodo << " con costo "<<it->second<<endl;
     }
 }
 
 void Enrutador::inicializarTabla(int n){
     int i=0;
-    for(char letraNodo='A';letraNodo<n+65;letraNodo++){
-        if(letraNodo==this->nombreNodo.back()){continue;}
+    double INF = std::numeric_limits<double>::infinity();
+    for(char letraNodo='A';letraNodo<n+65;i++,letraNodo++){
         this->TablaEnrutamiento[i].destino=letraNodo;
-        this->TablaEnrutamiento[i].distancia=INF;
         this->TablaEnrutamiento[i].prevdestino='0';
-        i++;
+        if(letraNodo==this->nombreNodo.back()){
+            this->TablaEnrutamiento[i].distancia=0;
+        }else{
+            this->(double)TablaEnrutamiento[i].distancia=INF;
+        }
     }
 }
 /*
