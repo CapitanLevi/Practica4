@@ -49,9 +49,9 @@ int main(){
         // ******* NOT NECESSARY ********
         cout<<"Tabla de enrutamiento inicial del "<<Nodos[i]->nombreNodo<<": "<<endl;
         for(int j=0; j<numNodos; j++){
-        cout<<Nodos[i]->destinos[i]<<" "<<
-              Nodos[i]->distancias[i]<<" "<<
-              Nodos[i]->prevdestinos[i]<<endl;
+        cout<<Nodos[i]->destinos[j]<<" "<<
+              Nodos[i]->distancias[j]<<" "<<
+              Nodos[i]->prevdestinos[j]<<endl;
         }
         cout<<'\n';
         // ******* NOT NECESSARY ********
@@ -63,18 +63,15 @@ int main(){
     do {
         Unvisited.push_back(letraNodo++);
     }while (numNodos!=letraNodo-65);
+    Enrutador* NodoActual;
     //Hallando la tabla de enrutamiento final para 1 nodo (Dijkstra’s Shortest Path Algorithm)
-    letraNodo=65;
-    /*while (!Unvisited.empty()) {
-        for(int i=0; i<numNodos; i++){
-            if((Nodos[0]->TablaEnrutamiento[i].distancia)<INF){
-
-            };
-
-        }
+    while (!Unvisited.empty()){
+        NodoActual=Nodos[0]->neighborWithShortestDistance(numNodos);
         Visited.push_back(letraNodo++);
         Unvisited.erase(Unvisited.begin());
-    }*/ //VOY AQUI
+    } //VOY AQUI
+
+
     return 0;
 }
 

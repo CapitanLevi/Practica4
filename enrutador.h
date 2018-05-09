@@ -27,7 +27,7 @@ public:
     // Métodos
     void imprimirNodos();
     void inicializarTabla(int);
-    void smallestDistance();    //Puede cambiar el tipo de retorno
+    Enrutador* neighborWithShortestDistance(int);    //Puede cambiar el tipo de retorno
 
     void crearTabla();
     void MirarVecinos(Enrutador* nodo, int costo);

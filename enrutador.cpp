@@ -1,5 +1,5 @@
-#define INF 1<<30
 #include "enrutador.h"
+#include <algorithm>    // std::min_element, std::max_element
 Enrutador::Enrutador(){}
 
 Enrutador::Enrutador(string nombre){
@@ -16,14 +16,12 @@ void Enrutador::imprimirNodos(){
 }
 
 void Enrutador::inicializarTabla(int n){
-    for(int i=0; i<n; i++){
-        this->destinos[i]=i+65;
-        this->prevdestinos[i]='0';
-        if(letraNodo==this->nombreNodo.back()){
-            this->distancias[i]=0;
-        }else{
-            this->distancias[i]=INF;
-            }
+    int i=0;
+    for(char letraNodo='A';letraNodo<n+65;i++,letraNodo++){
+        this->destinos.push_back(i+65);
+        this->prevdestinos.push_back('0');
+        if(letraNodo==this->nombreNodo.back()) {this->distancias.push_back(0);}
+        else {this->distancias.push_back(INT8_MAX);}
     }
 //    int i=0;
 //    for(char letraNodo='A';letraNodo<n+65;i++,letraNodo++){
@@ -34,15 +32,22 @@ void Enrutador::inicializarTabla(int n){
 //        }else{
 //            this->TablaEnrutamiento[i].distancia=INF;
 //        }
-//    }
+    //    }
 }
 
-void Enrutador::shortestDistance(
-        )
-{
-    for(int i=0; i<sizeof(this->TablaEnrutamiento);i++){
-        if(TablaEnrutamiento[i].distancia<distanciaActual);
+Enrutador* Enrutador::neighborWithShortestDistance(int n){
+    //Encontrando la posición del mínimo elemento (distancia más corta)
+    int mini = *min_element(distancias.begin(), distancias.end());
+    auto temp = find(distancias.begin(), distancias.end(), mini);
+    auto index = distance(distancias.begin(), temp);
+    //Encontrando la letra (nombre del nodo) correspondiente al de esa posición.
+    Enrutador* VecinoConMenorDistancia;
+    for(int i=0; i<n; i++){
+        if(destinos[index]==Nodos[i]->nombreNodo.back()){
+            VecinoConMenorDistancia=Nodos[i];
+        }
     }
+    return NodoActual;
 }
 
 
