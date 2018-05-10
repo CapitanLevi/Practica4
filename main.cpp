@@ -74,7 +74,12 @@ int main(){
     return 0;
 }
 
-
+template <class U1, class U2>
+void encontrardeV1enV2(){
+    U1 mini = *min_element(distancias.begin(), distancias.end());
+    auto temp = find(distancias.begin(), distancias.end(), mini);
+    U2 index = distance(distancias.begin(), temp);
+}
 
 /*
 Enrutador nodoA("Nodo A");
