@@ -19,6 +19,14 @@ void Enrutador::imprimirNodos(){
 void Enrutador::inicializarTabla(int n){
     int i=0;
     for(char letraNodo='A';letraNodo<n+65;i++,letraNodo++){
+<<<<<<< HEAD
+        this->TablaEnrutamiento[i].destino=letraNodo;
+        this->TablaEnrutamiento[i].prevdestino='0';
+        if(letraNodo==this->nombreNodo.back()){
+            this->TablaEnrutamiento[i].distancia=0;
+        }else{
+            this->TablaEnrutamiento[i].distancia=INF; //Error en ejecución.
+=======
         this->destinos.push_back(i+65);
         this->prevdestinos.push_back('0');
         if(letraNodo==this->nombreNodo.back()) {this->distancias.push_back(0);}
@@ -38,6 +46,7 @@ char Enrutador::neighbourWithShortestDistance(int n,vector<char> &unvisited){
     for (it=Vecinos.begin(); it!= Vecinos.end(); ++it,i++){
         if((it->first)==unvisited[i]){
 
+>>>>>>> 5df3000b754654a2e7b90309413e523e9592a821
         }
     }
 
